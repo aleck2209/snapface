@@ -1,12 +1,14 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { FaceSnap } from './face-snap/face-snap';
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [
+    FaceSnap
+  ],
   selector: 'app-root',
   styleUrl: './app.scss',
   templateUrl: './app.html',
 })
 export class App {
-  protected readonly title = signal('snapface');
+  
 }
