@@ -1,8 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FaceSnaps } from '../models/face-snap';
+import { NgStyle } from '@angular/common';
 
 @Component({
-  imports: [],
+  imports: [
+    NgStyle
+  ],
   selector: 'app-face-snap',
   styleUrl: './face-snap.scss',
   templateUrl: './face-snap.html',
@@ -26,13 +29,13 @@ export class FaceSnap implements OnInit {
   }
 
   unSnap() {
-    this.faceSnap.addSnap();
+    this.faceSnap.removeSnap();
     this.snapButtonText = 'Oh Snap!';
     this.userHasSnapped = false;
   }
 
   snap() {
-    this.faceSnap.removeSnap();
+    this.faceSnap.addSnap();
     this.snapButtonText = 'Oops, unSnap!';
     this.userHasSnapped = true;
   }
