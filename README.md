@@ -1,5 +1,9 @@
 # Snapface
 
+## À propos
+
+Ce projet est réalisé dans le cadre du cours **[Débutez avec Angular](https://openclassrooms.com/fr/courses/7471261-debutez-avec-angular)** que je suis sur OpenClassrooms.
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.3.
 
 ## Development server
