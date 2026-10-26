@@ -12,6 +12,7 @@ export class FaceSnap implements OnInit {
   createdAt!: Date;
   snaps!: number;
   imageUrl!: string;
+  isliked: boolean = false;
 
   ngOnInit(): void {
     this.title = 'Archibald';
@@ -19,5 +20,10 @@ export class FaceSnap implements OnInit {
     this.createdAt = new Date();
     this.snaps = 5;
     this.imageUrl = 'https://cdn.pixabay.com/photo/2015/05/31/16/03/teddy-bear-792273_1280.jpg';
+  }
+
+  onLiked(): void {
+    this.isliked ? this.snaps-- : this.snaps++
+    this.isliked = !this.isliked
   }
 }
