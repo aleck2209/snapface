@@ -12,7 +12,8 @@ export class FaceSnap implements OnInit {
   createdAt!: Date;
   snaps!: number;
   imageUrl!: string;
-  isliked: boolean = false;
+  snapButtonText!: string;
+  userHasSnapped!: boolean;
 
   ngOnInit(): void {
     this.title = 'Archibald';
@@ -20,10 +21,27 @@ export class FaceSnap implements OnInit {
     this.createdAt = new Date();
     this.snaps = 5;
     this.imageUrl = 'https://cdn.pixabay.com/photo/2015/05/31/16/03/teddy-bear-792273_1280.jpg';
+    this.snapButtonText = 'Oh Snap!';
+    this.userHasSnapped = false
   }
 
-  onLiked(): void {
-    this.isliked ? this.snaps-- : this.snaps++
-    this.isliked = !this.isliked
+  onSnap(): void {
+    if (this.userHasSnapped) {
+      this.unSnap();
+    } else {
+      this.snap();
+    }
+  }
+
+  unSnap() {
+    this.snaps--;
+    this.snapButtonText = 'Oh Snap!';
+    this.userHasSnapped = false;
+  }
+
+  snap() {
+    this.snaps++;
+    this.snapButtonText = 'Oops, unSnap!';
+    this.userHasSnapped = true;
   }
 }
