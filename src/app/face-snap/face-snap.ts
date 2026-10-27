@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FaceSnaps } from '../models/face-snap';
-import { NgStyle } from '@angular/common';
+import { NgClass, NgStyle } from '@angular/common';
 
 @Component({
   imports: [
-    NgStyle
+    NgStyle,
+    NgClass
   ],
   selector: 'app-face-snap',
   styleUrl: './face-snap.scss',
