@@ -8,7 +8,6 @@ import { CurrencyPipe, DatePipe, NgClass, NgStyle, TitleCasePipe } from '@angula
     NgClass,
     TitleCasePipe,
     DatePipe,
-    CurrencyPipe,
   ],
   selector: 'app-face-snap',
   styleUrl: './face-snap.scss',
