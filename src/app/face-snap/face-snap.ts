@@ -4,26 +4,21 @@ import { CurrencyPipe, DatePipe, NgClass, NgStyle, TitleCasePipe } from '@angula
 import { FaceSnapService } from '../services/face-snaps.service';
 
 @Component({
-  imports: [
-    NgStyle,
-    NgClass,
-    TitleCasePipe,
-    DatePipe,
-  ],
+  imports: [NgStyle, NgClass, TitleCasePipe, DatePipe],
   selector: 'app-face-snap',
   styleUrl: './face-snap.scss',
   templateUrl: './face-snap.html',
 })
 export class FaceSnap implements OnInit {
-@Input() faceSnap!: FaceSnaps;
+  @Input() faceSnap!: FaceSnaps;
   snapButtonText!: string;
   userHasSnapped!: boolean;
 
-  constructor(private faceSnapService: FaceSnapService){}
+  constructor(private faceSnapService: FaceSnapService) {}
 
   ngOnInit(): void {
     this.snapButtonText = 'Oh Snap!';
-    this.userHasSnapped = false
+    this.userHasSnapped = false;
   }
 
   onSnap(): void {
@@ -35,13 +30,13 @@ export class FaceSnap implements OnInit {
   }
 
   unSnap() {
-    this.faceSnap.removeSnap();
+    this.faceSnapService.getFaceSnapById(this.faceSnap.id, 'unsnap');
     this.snapButtonText = 'Oh Snap!';
     this.userHasSnapped = false;
   }
 
   snap() {
-    this.faceSnapService.geFaceSnapById(this.faceSnap.id);
+    this.faceSnapService.getFaceSnapById(this.faceSnap.id, 'snap');
     this.snapButtonText = 'Oops, unSnap!';
     this.userHasSnapped = true;
   }

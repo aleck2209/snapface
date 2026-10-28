@@ -1,44 +1,44 @@
-import { Injectable } from "@angular/core";
-import { FaceSnaps } from "../models/face-snap";
+import { Injectable } from '@angular/core';
+import { FaceSnaps } from '../models/face-snap';
+import { SnapType } from '../models/face-type.type';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class FaceSnapService {
-    private faceSnaps: FaceSnaps[] = [
-      new FaceSnaps(
-        'Archibald',
-        'Mon meilleur ami depuis toujours !',
-        'https://cdn.pixabay.com/photo/2015/05/31/16/03/teddy-bear-792273_1280.jpg',
-        new Date(),
-        0,
-      ),
-      new FaceSnaps(
-        'Three Rock Mountain',
-        'Un endroit magnifique pour les randonnées',
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Three_Rock_Mountain_Southern_Tor.jpg/2880px-Three_Rock_Mountain_Southern_Tor.jpg',
-        new Date(),
-        6,
-      ).withLocation('Tomorrow est un autre jour'),
-      new FaceSnaps(
-        'Un bon repas',
-        "Mmmh que c'est bon !",
-        'https://wtop.com/wp-content/uploads/2020/06/HEALTHYFRESH.jpg',
-        new Date(),
-        156,
-      ),
-    ];
+  private faceSnaps: FaceSnaps[] = [
+    new FaceSnaps(
+      'Archibald',
+      'Mon meilleur ami depuis toujours !',
+      'https://cdn.pixabay.com/photo/2015/05/31/16/03/teddy-bear-792273_1280.jpg',
+      new Date(),
+      0,
+    ),
+    new FaceSnaps(
+      'Three Rock Mountain',
+      'Un endroit magnifique pour les randonnées',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Three_Rock_Mountain_Southern_Tor.jpg/2880px-Three_Rock_Mountain_Southern_Tor.jpg',
+      new Date(),
+      6,
+    ).withLocation('Tomorrow est un autre jour'),
+    new FaceSnaps(
+      'Un bon repas',
+      "Mmmh que c'est bon !",
+      'https://wtop.com/wp-content/uploads/2020/06/HEALTHYFRESH.jpg',
+      new Date(),
+      156,
+    ),
+  ];
 
-    getFaceSnaps(): FaceSnaps[] {
-        return [...this.faceSnaps]
+  getFaceSnaps(): FaceSnaps[] {
+    return [...this.faceSnaps];
+  }
+
+  getFaceSnapById(faceSnapId: string, snapType: SnapType): void {
+    const foundFaceSnap = this.faceSnaps.find((faceSnap) => faceSnap.id === faceSnapId);
+    if (!foundFaceSnap) {
+      throw new Error("FaceSnap doesn't exist");
     }
-
-    geFaceSnapById(faceSnapId: string): void {
-      const foundFaceSnap = this.faceSnaps.find(faceSnap => faceSnap.id === faceSnapId)
-      if (!foundFaceSnap) {
-        throw new Error("FaceSnap doesn't exist")
-      }
-
-      foundFaceSnap.addSnap()
-    }
+    foundFaceSnap.snap(snapType);
+  }
 }
