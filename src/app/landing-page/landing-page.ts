@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
@@ -21,7 +21,7 @@ export class LandingPage implements OnInit{
     
   }
 
-  onSubmitForm(): void {
-    console.log(this.userEmail)
+  onSubmitForm(form: NgForm): void {
+    console.log(form.value)
   }
 }
