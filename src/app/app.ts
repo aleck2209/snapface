@@ -6,7 +6,7 @@ import { AsyncPipe } from '@angular/common';
 import { map, filter, tap } from 'rxjs';
 
 @Component({
-  imports: [Header, RouterOutlet, AsyncPipe],
+  imports: [Header, RouterOutlet],
   selector: 'app-root',
   styleUrl: './app.scss',
   templateUrl: './app.html',
