@@ -17,17 +17,19 @@ export class FaceSnapService {
   }
 
   getFaceSnapById(faceSnapId: string): Observable<FaceSnaps> {
-    return this.http.get<FaceSnaps>(`http://localhost:3000/facesnaps/${faceSnapId}`)
+    return this.http.get<FaceSnaps>(`http://localhost:3000/facesnaps/${faceSnapId}`);
   }
 
   snapFaceSnapById(faceSnapId: string, snapType: SnapType): Observable<FaceSnaps> {
     return this.getFaceSnapById(faceSnapId).pipe(
-      map(faceSnap => ({
+      map((faceSnap) => ({
         ...faceSnap,
-        snaps: faceSnap.snaps + (snapType === 'snap' ? 1 : -1)
+        snaps: faceSnap.snaps + (snapType === 'snap' ? 1 : -1),
       })),
-      switchMap(updatedFaceSnap => this.http.put<FaceSnaps>(`http://localhost:3000/facesnaps/${faceSnapId}`, updatedFaceSnap))
-    )
+      switchMap((updatedFaceSnap) =>
+        this.http.put<FaceSnaps>(`http://localhost:3000/facesnaps/${faceSnapId}`, updatedFaceSnap),
+      ),
+    );
   }
 
   addFaceSnap(formValue: {
@@ -35,17 +37,13 @@ export class FaceSnapService {
     description: string;
     imageUrl: string;
     location?: string;
-  }): void {
-    const faceSnap = new FaceSnaps(
-      formValue.title,
-      formValue.description,
-      formValue.imageUrl,
-      new Date(),
-      0,
+  }): Observable<FaceSnaps> {
+    return this.getFaceSnaps().pipe(
+      map(
+        () =>
+          new FaceSnaps(formValue.title, formValue.description, formValue.imageUrl, new Date(), 0),
+      ),
+      switchMap(newFaceSnap => this.http.post<FaceSnaps>('http://localhost:3000/facesnaps', newFaceSnap))
     );
-    if (formValue.location) {
-      faceSnap.setLocation(formValue.location);
-    }
-    this.faceSnaps.push(faceSnap);
   }
 }
