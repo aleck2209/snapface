@@ -21,6 +21,7 @@ export class FaceSnapService {
   }
 
   snapFaceSnapById(faceSnapId: string, snapType: SnapType): void {
+    
     // const faceSnap = this.getFaceSnapById(faceSnapId);
     // faceSnap.snap(snapType);
   }

@@ -27,24 +27,16 @@ export class SingleFaceSnap implements OnInit {
     this.getFaceSnap();
   }
 
-  onSnap(): void {
+  onSnap(faceSnapId: string): void {
     if (this.userHasSnapped) {
-      this.unSnap();
+      this.faceSnapService.snapFaceSnapById(faceSnapId, 'unsnap');
+      this.snapButtonText = 'Oh Snap!';
+      this.userHasSnapped = false;
     } else {
-      this.snap();
+      this.faceSnapService.snapFaceSnapById(faceSnapId, 'snap');
+      this.snapButtonText = 'Oops, unSnap!';
+      this.userHasSnapped = true;
     }
-  }
-
-  unSnap() {
-    // this.faceSnapService.snapFaceSnapById(this.faceSnap.id, 'unsnap');
-    // this.snapButtonText = 'Oh Snap!';
-    // this.userHasSnapped = false;
-  }
-
-  snap() {
-    // this.faceSnapService.snapFaceSnapById(this.faceSnap.id, 'snap');
-    // this.snapButtonText = 'Oops, unSnap!';
-    // this.userHasSnapped = true;
   }
 
   private prepareInterface() {

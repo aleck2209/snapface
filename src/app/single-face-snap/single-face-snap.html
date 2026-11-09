@@ -13,10 +13,10 @@
     <p>{{ faceSnap.description }}</p>
     <p>FaceSnap créée le {{ faceSnap.createdAt | date }}</p>
     <p>
-      <button (click)="onSnap()">{{ snapButtonText }}</button>
+      <button (click)="onSnap(faceSnap.id)">{{ snapButtonText }}</button>
       <span [ngStyle]="{ color: 'rgb(0, ' + faceSnap.snaps + ', 0)' }">{{ faceSnap.snaps }}</span>
     </p>
   </div>
 } @else {
-  <p>Chargement des données...</p>
+  <p class="message">Chargement des données...</p>
 }
